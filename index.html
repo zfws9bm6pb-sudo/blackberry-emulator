@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlackBerry Bold 9900 Emulator</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: sans-serif;
+            color: #fff;
+        }
+        .device {
+            width: 360px;
+            background: #2b2b2b;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            border: 2px solid #444;
+        }
+        .screen {
+            width: 100%;
+            height: 200px;
+            background: #000;
+            border: 2px solid #111;
+            border-radius: 4px;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+        }
+        .os-header {
+            background: #111;
+            padding: 5px 10px;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #333;
+        }
+        .os-content {
+            padding: 15px;
+            font-size: 14px;
+        }
+        .nav-area {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .btn-call, .btn-end, .btn-menu, .btn-back {
+            background: #3a3a3a;
+            border: 1px solid #555;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            cursor: pointer;
+        }
+        .trackpad {
+            width: 40px;
+            height: 25px;
+            background: #111;
+            border: 1px solid #444;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .keyboard {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 3px;
+        }
+        .key {
+            background: #333;
+            border: 1px solid #555;
+            color: #ddd;
+            text-align: center;
+            padding: 8px 0;
+            font-size: 11px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .key:active {
+            background: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="device">
+    <!-- Screen -->
+    <div class="screen" id="bb-screen">
+        <div class="os-header">
+            <span>BlackBerry OS 7</span>
+            <span id="clock">12:00 PM</span>
+        </div>
+        <div class="os-content">
+            <strong>Welcome to BB Emulator</strong>
+            <p>System ready. Use keyboard or buttons below.</p>
+        </div>
+    </div>
+
+    <!-- Navigation Bar (Call, Menu, Trackpad, Back, End) -->
+    <div class="nav-area">
+        <button class="btn-call">📞</button>
+        <button class="btn-menu">Menu</button>
+        <div class="trackpad" title="Optical Trackpad"></div>
+        <button class="btn-back">↩</button>
+        <button class="btn-end">🔴</button>
+    </div>
+
+    <!-- QWERTY Keyboard -->
+    <div class="keyboard" id="bb-keyboard">
+        <!-- Row 1 -->
+        <div class="key">Q</div><div class="key">W</div><div class="key">E</div><div class="key">R</div><div class="key">T</div><div class="key">Y</div><div class="key">U</div><div class="key">I</div><div class="key">O</div><div class="key">P</div>
+        <!-- Row 2 -->
+        <div class="key">A</div><div class="key">S</div><div class="key">D</div><div class="key">F</div><div class="key">G</div><div class="key">H</div><div class="key">J</div><div class="key">K</div><div class="key">L</div><div class="key">&larr;</div>
+        <!-- Row 3 -->
+        <div class="key">Z</div><div class="key">X</div><div class="key">C</div><div class="key">V</div><div class="key">B</div><div class="key">N</div><div class="key">M</div><div class="key">$</div><div class="key">!</div><div class="key">&crarr;</div>
+    </div>
+</div>
+
+<script>
+    // Simple Clock script for the OS header
+    setInterval(() => {
+        const now = new Date();
+        document.getElementById('clock').innerText = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }, 1000);
+
+    // Basic event listener for virtual keys
+    document.querySelectorAll('.key').forEach(key => {
+        key.addEventListener('click', () => {
+            console.log(`Key pressed: ${key.innerText}`);
+            // TODO: Hook up your emulator input handler here
+        });
+    });
+</script>
+
+</body>
+</html>
